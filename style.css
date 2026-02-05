@@ -1,0 +1,474 @@
+:root {
+    --bg-color: #050209;
+    --card-bg: #1A1625;
+    --text-primary: #FFFFFF;
+    --text-secondary: #B0B0D0;
+    --accent: #8A63D2;
+    /* Muted Purple */
+    --accent-glow: #7B3FE4;
+    /* Vibrant Purple Glow */
+    --secondary-accent: #4A4A6A;
+    /* Grey for "lo-fi" look replacers if needed */
+
+    --font-main: 'Space Grotesk', sans-serif;
+
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 2rem;
+    --spacing-lg: 4rem;
+    --spacing-xl: 8rem;
+
+    --container-width: 1200px;
+    --radius: 12px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: var(--font-main);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.3s ease;
+}
+
+.container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 var(--spacing-sm);
+}
+
+.highlight {
+    color: var(--text-primary);
+    text-decoration: underline;
+    text-decoration-color: var(--text-primary);
+    /* Style from image looks like white underline or slight purple */
+    text-decoration-color: #6A5ACD;
+    text-underline-offset: 8px;
+    text-decoration-thickness: 1px;
+}
+
+.highlight-text {
+    color: var(--accent);
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+}
+
+.btn-primary {
+    background-color: #C0C0FF;
+    color: #000;
+}
+
+.btn-primary:hover {
+    background-color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px rgba(192, 192, 255, 0.4);
+}
+
+.btn-large {
+    padding: 16px 40px;
+    font-size: 1.1rem;
+    width: 100%;
+}
+
+/* HEADER */
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 30px 0;
+    z-index: 1000;
+    background: transparent;
+    /* Cleaner look initially */
+    transition: background 0.3s ease, padding 0.3s ease;
+}
+
+.header.scrolled {
+    background: rgba(5, 2, 9, 0.9);
+    padding: 15px 0;
+    backdrop-filter: blur(10px);
+}
+
+.header-content {
+    display: flex;
+    justify-content: center;
+    /* Center by default */
+    align-items: center;
+    position: relative;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+}
+
+.nav-links {
+    color: #4A3AFF;
+    /* Purple aesthetic from image */
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+.nav-links a {
+    color: inherit;
+    opacity: 0.8;
+    margin: 0 4px;
+}
+
+.nav-links a:hover {
+    opacity: 1;
+    text-decoration: underline;
+}
+
+.contact-btn-header {
+    position: absolute;
+    right: 0;
+    /* Redesign button to match "Contact Me" style if seen, otherwise standard pill */
+    background-color: #C0C0FF;
+    font-size: 0.9rem;
+    padding: 8px 24px;
+}
+
+@media (max-width: 768px) {
+    .header-content {
+        justify-content: space-between;
+    }
+
+    .nav-links {
+        display: none;
+        /* Hide top nav on mobile or change to menu */
+    }
+
+    .contact-btn-header {
+        position: static;
+    }
+}
+
+/* HERO */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-top: 0;
+    /* Centered nicely */
+    position: relative;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.hero-subtitle {
+    display: none;
+    /* Removed */
+}
+
+.hero-title {
+    font-size: clamp(2rem, 3.5vw, 3.5rem);
+    font-weight: 400;
+    line-height: 1.4;
+    max-width: 1000px;
+    /* Wider for more breathing room */
+    margin: 0 auto;
+    padding: 0 20px;
+    /* Inner padding */
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 80px;
+    /* More space from bottom */
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.9rem;
+    opacity: 0.9;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translate(-50%, 0);
+    }
+
+    40% {
+        transform: translate(-50%, -10px);
+    }
+
+    60% {
+        transform: translate(-50%, -5px);
+    }
+}
+
+.arrow-down-filled {
+    width: 16px;
+    height: 16px;
+    fill: #4A3AFF;
+    /* Purple arrow */
+}
+
+/* WORK */
+.section {
+    padding: var(--spacing-xl) 0;
+}
+
+.work-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.work-item {
+    aspect-ratio: 9/16;
+    background-color: var(--text-secondary);
+    border-radius: var(--radius);
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.4s ease;
+}
+
+.work-item:hover {
+    transform: scale(1.02);
+    z-index: 10;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.work-img,
+.work-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(20%);
+    transition: filter 0.4s ease;
+}
+
+.work-item:hover .work-img,
+.work-item:hover .work-video {
+    filter: grayscale(0%);
+}
+
+
+/* PROCESS */
+.section-title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: var(--spacing-lg);
+    font-weight: 400;
+}
+
+.process-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+
+.process-card {
+    background-color: transparent;
+    border-radius: var(--radius);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.process-visual {
+    height: 150px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius);
+    margin-bottom: 20px;
+    /* The bottom half dark overlay effect from design can be achieved with gradient or just simpler */
+    background: linear-gradient(to bottom, #d0d0d0 50%, #333 50%);
+}
+
+
+.process-info h3 {
+    margin-bottom: 8px;
+    color: var(--accent);
+    /* Used accent color for header */
+}
+
+.process-info p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+/* TESTIMONIALS */
+.testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.testimonial-card {
+    background-color: rgba(255, 255, 255, 0.05);
+    /* Very light glass look */
+    padding: 30px 20px;
+    border-radius: 4px;
+    text-align: center;
+    position: relative;
+    background: #E0E0E0;
+    /* Light card as per image */
+    color: #111;
+}
+
+.quote-icon {
+    width: 20px;
+    height: 20px;
+    background-color: #999;
+    border-radius: 50%;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.testimonial-text {
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+    font-style: italic;
+    line-height: 1.4;
+}
+
+.client-name {
+    font-weight: bold;
+    font-size: 0.8rem;
+    color: #444;
+}
+
+
+/* CONTACT */
+.contact-wrapper {
+    max-width: 600px;
+    text-align: center;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 40px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 16px;
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+/* FOOTER */
+.footer {
+    padding: 40px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.footer .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.social-links {
+    display: flex;
+    gap: 20px;
+}
+
+.social-links a:hover {
+    color: var(--accent);
+}
+
+/* RESPONSIVE */
+.mobile-only {
+    display: none;
+}
+
+@media (max-width: 900px) {
+
+    .work-grid,
+    .process-grid,
+    .testimonial-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .work-grid,
+    .process-grid,
+    .testimonial-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .footer .container {
+        flex-direction: column;
+        gap: 20px;
+    }
+}
+
+/* Animations */
+.fade-up-init {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Staggered delays for grid items if needed, though JS observer handles individual element entry nicely. 
+   We can add specific delays if we want a domino effect strictly via CSS, but let's keep it simple. */
